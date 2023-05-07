@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+      class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BSTree {
+  constructor() {
+    this.root = null;
+  }
+
+  istreeemp() {
+    return this.root === null;
+  }
+
+  maketree(val) {
+    let newnode = new Node(val);
+    if (this.root === null) {
+      this.root = newnode;
+    } else {
+      this.insertnode(this.root, newnode);
+    }
+  }
+
+  insertnode(root, newnode) {
+    if (newnode.value < root.value) {
+      if (root.left === null) {
+        root.left = newnode;
+      } else {
+        this.insertnode(root.left, newnode);
+      }
+    } else {
+      if (root.right === null) {
+        root.right = newnode;
+      } else {
+        this.insertnode(root.right, newnode);
+      }
+    }
+  }
+  search(root, val){
+      if(root === null){
+          return false;
+      }
+      else if(root.value === val){
+          return true;
+      }
+      else if(root.value > val){
+     return this.search(root.left, val)
+      }
+      else{
+      return  this.search(root.right, val)
+      }
+  }
+}
+
+const tree = new BSTree();
+tree.maketree(20);
+tree.maketree(10);
+tree.maketree(5);
+tree.maketree(40);
+tree.maketree(30);
+tree.maketree(70);
+
+console.log(tree.search(tree.root, 30))
+console.log(tree.istreeemp());
+console.log(tree);
+
+  </script>
+</body>
+</html>
